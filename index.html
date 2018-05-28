@@ -9,11 +9,15 @@
 </head>
 
 <body>
-	<p>123</p>
+	<svg width="500" height="100">
+		<rect id="rect1" x="10" y="10" width="50" height="80" style="stroke:#000000; fill:none;" />
+	</svg>
 	<script>
 		document.body.addEventListener('pointerdown', function (e) {
 			console.log(1);
 		});
+		const rect = document.querySelector('#rect1');
+		console.log(rect instanceof SVGElement);
 	</script>
 </body>
 

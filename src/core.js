@@ -1,4 +1,4 @@
-
+// open.js 和 close.js 好像是 函数的头和尾， 具体明天再看
 function IScroll (el, options) {
 	this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
 	this.scroller = this.wrapper.children[0];

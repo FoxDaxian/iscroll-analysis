@@ -198,9 +198,8 @@ var utils = (function() {
             top: top
         };
     };
-
-	// 看到这了
-	
+    
+    // 相同长度的数组的正则test, 有一个匹配就返回true，否则false
     me.preventDefaultException = function(el, exceptions) {
         for (var i in exceptions) {
             if (exceptions[i].test(el[i])) {
@@ -211,6 +210,7 @@ var utils = (function() {
         return false;
     };
 
+    // 第一个参数复制并且传参
     me.extend((me.eventType = {}), {
         touchstart: 1,
         touchmove: 1,
@@ -229,6 +229,8 @@ var utils = (function() {
         MSPointerUp: 3
     });
 
+    // cubic-bezier是transition-timing-function的属性，参考资料：https://www.jianshu.com/p/d999f090d333
+    // 定义运动轨迹
     me.extend((me.ease = {}), {
         quadratic: {
             style: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -286,14 +288,17 @@ var utils = (function() {
         }
     });
 
+    // 自定义tap事件，传入e的 page坐标 到自定义事件对象中
     me.tap = function(e, eventName) {
         var ev = document.createEvent('Event');
+        // eventType,canBubble,cancelable
         ev.initEvent(eventName, true, true);
         ev.pageX = e.pageX;
         ev.pageY = e.pageY;
         e.target.dispatchEvent(ev);
     };
 
+    // 自定义click事件
     me.click = function(e) {
         var target = e.target,
             ev;
@@ -322,6 +327,7 @@ var utils = (function() {
         }
     };
 
+    // 返回touch的类型，水平+zoom 或者 垂直+zoom
     me.getTouchAction = function(eventPassthrough, addPinch) {
         var touchAction = 'none';
         if (eventPassthrough === 'vertical') {
@@ -336,6 +342,7 @@ var utils = (function() {
         return touchAction;
     };
 
+    // 如果是svg的子集，如何获取size，否则，怎么获取size
     me.getRect = function(el) {
         if (el instanceof SVGElement) {
             var rect = el.getBoundingClientRect();
