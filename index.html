@@ -7,12 +7,13 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
 	<style>
-		*{
+		* {
 			margin: 0;
 			padding: 0;
 		}
-		.wrapper{
-			height: 400px;
+
+		.wrapper {
+			height: 200px;
 			border: 1px solid red;
 		}
 	</style>
@@ -47,6 +48,11 @@
 	<script src="./dist/iscroll-min.js"></script>
 	<script>
 		new IScroll('.wrapper')
+		document.querySelector('.scroller').onclick = function(){
+			const p = document.createElement('p')
+			p.innerHTML = '12123'
+			this.appendChild(p);
+		}
 	</script>
 </body>
 

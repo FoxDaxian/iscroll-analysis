@@ -456,6 +456,7 @@ function IScroll (el, options) {
 	this.y = 0;
 	this.directionX = 0;
 	this.directionY = 0;
+	// 监听事件
 	this._events = {};
 
 // INSERT POINT: DEFAULTS
@@ -473,7 +474,7 @@ IScroll.prototype = {
 	_init: function () {
 		this._initEvents();
 
-		if ( this.options.scrollbars || this.options.indicators ) {
+			if ( this.options.scrollbars || this.options.indicators ) {
 			this._initIndicators();
 		}
 
@@ -493,6 +494,7 @@ IScroll.prototype = {
 
 	},
 
+	// 摧毁所有
 	destroy: function () {
 		this._initEvents(true);
 		clearTimeout(this.resizeTimeout);
@@ -518,14 +520,14 @@ IScroll.prototype = {
 		  // for button property
 		  // http://unixpapa.com/js/mouse.html
 		  var button;
-	    if (!e.which) {
-	      /* IE case */
-	      button = (e.button < 2) ? 0 :
-	               ((e.button == 4) ? 1 : 2);
-	    } else {
-	      /* All others */
-	      button = e.button;
-	    }
+			if (!e.which) {
+			/* IE case */
+			button = (e.button < 2) ? 0 :
+					((e.button == 4) ? 1 : 2);
+			} else {
+			/* All others */
+			button = e.button;
+			}
 			if ( button !== 0 ) {
 				return;
 			}
@@ -1035,7 +1037,8 @@ IScroll.prototype = {
 // INSERT POINT: _translate
 
 	},
-
+	
+	// 绑定一系列事件
 	_initEvents: function (remove) {
 		var eventType = remove ? utils.removeEvent : utils.addEvent,
 			target = this.options.bindToWrapper ? this.wrapper : window;
@@ -1719,7 +1722,6 @@ IScroll.prototype = {
 			case 'pointerdown':
 			case 'MSPointerDown':
 			case 'mousedown':
-				alert(e.type);
 				this._start(e);
 				break;
 			case 'touchmove':
