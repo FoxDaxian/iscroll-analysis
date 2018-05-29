@@ -5,6 +5,7 @@
 			case 'pointerdown':
 			case 'MSPointerDown':
 			case 'mousedown':
+				alert(e.type);
 				this._start(e);
 				break;
 			case 'touchmove':

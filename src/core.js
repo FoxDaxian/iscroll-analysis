@@ -1,12 +1,15 @@
 // open.js 和 close.js 好像是 函数的头和尾， 具体明天再看
 function IScroll (el, options) {
 	this.wrapper = typeof el == 'string' ? document.querySelector(el) : el;
+	// 因为这里，所以只有第一个子元素会滚动
 	this.scroller = this.wrapper.children[0];
+	// 缓存样式，为了更好地性能
 	this.scrollerStyle = this.scroller.style;		// cache style for better performance
 
+	// 基本配置
 	this.options = {
 
-// INSERT POINT: OPTIONS
+	// INSERT POINT: OPTIONS
 		disablePointer : !utils.hasPointer,
 		disableTouch : utils.hasPointer || !utils.hasTouch,
 		disableMouse : utils.hasPointer || utils.hasTouch,
@@ -29,6 +32,7 @@ function IScroll (el, options) {
 		bindToWrapper: typeof window.onmousedown === "undefined"
 	};
 
+	// 参数options赋值到this.options上
 	for ( var i in options ) {
 		this.options[i] = options[i];
 	}
@@ -72,6 +76,7 @@ function IScroll (el, options) {
 	this.y = 0;
 	this.directionX = 0;
 	this.directionY = 0;
+	// 监听事件
 	this._events = {};
 
 // INSERT POINT: DEFAULTS
@@ -89,10 +94,11 @@ IScroll.prototype = {
 	_init: function () {
 		this._initEvents();
 
-// INSERT POINT: _init
+	// INSERT POINT: _init
 
 	},
 
+	// 摧毁所有
 	destroy: function () {
 		this._initEvents(true);
 		clearTimeout(this.resizeTimeout);
@@ -118,14 +124,14 @@ IScroll.prototype = {
 		  // for button property
 		  // http://unixpapa.com/js/mouse.html
 		  var button;
-	    if (!e.which) {
-	      /* IE case */
-	      button = (e.button < 2) ? 0 :
-	               ((e.button == 4) ? 1 : 2);
-	    } else {
-	      /* All others */
-	      button = e.button;
-	    }
+			if (!e.which) {
+			/* IE case */
+			button = (e.button < 2) ? 0 :
+					((e.button == 4) ? 1 : 2);
+			} else {
+			/* All others */
+			button = e.button;
+			}
 			if ( button !== 0 ) {
 				return;
 			}
@@ -594,7 +600,8 @@ IScroll.prototype = {
 // INSERT POINT: _translate
 
 	},
-
+	
+	// 绑定一系列事件
 	_initEvents: function (remove) {
 		var eventType = remove ? utils.removeEvent : utils.addEvent,
 			target = this.options.bindToWrapper ? this.wrapper : window;

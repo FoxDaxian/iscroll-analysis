@@ -14,8 +14,12 @@
     "desktop"
   ],
   "main": "build/iscroll.js",
+  "scripts": {
+	  "dev": "nodemon index"
+  },
   "devDependencies": {
     "jshint": "~2.9.1",
+    "nodemon": "^1.17.5",
     "uglify-js": "~2.6.2"
   },
   "repository": {

@@ -28,7 +28,7 @@ var utils = (function() {
         return false;
     })();
 
-	// 返回带前缀的
+    // 返回带前缀的
     function _prefixStyle(style) {
         if (_vendor === false) return false;
         if (_vendor === '') return style;
@@ -41,7 +41,7 @@ var utils = (function() {
             return new Date().getTime();
         };
 
-	// 扩展对象
+    // 扩展对象
     me.extend = function(target, obj) {
         for (var i in obj) {
             target[i] = obj[i];
@@ -57,14 +57,14 @@ var utils = (function() {
     };
 
     me.prefixPointerEvent = function(pointerEvent) {
-        return window.MSPointerEvent
-            ? 'MSPointer' +
-                  pointerEvent.charAt(7).toUpperCase() +
-                  pointerEvent.substr(8)
+        return window.MSPointerEvent ?
+            'MSPointer' +
+                	pointerEvent.charAt(7).toUpperCase() +
+                	pointerEvent.substr(8)
             : pointerEvent;
     };
 
-	// 动量
+    // 动量
     me.momentum = function(
         current, // 当前距离
         start, // 起始距离
@@ -83,14 +83,14 @@ var utils = (function() {
         destination =
             current +
             speed * speed / (2 * deceleration) * (distance < 0 ? -1 : 1);
-		
-		// v * v / (2 * a)
-			
+
+        // v * v / (2 * a)
+
         duration = speed / deceleration;
 
         if (destination < lowerMargin) {
-            destination = wrapperSize
-                ? lowerMargin - wrapperSize / 2.5 * (speed / 8)
+            destination = wrapperSize ?
+                lowerMargin - wrapperSize / 2.5 * (speed / 8)
                 : lowerMargin;
             distance = Math.abs(destination - current);
             duration = distance / speed;
@@ -198,7 +198,7 @@ var utils = (function() {
             top: top
         };
     };
-    
+
     // 相同长度的数组的正则test, 有一个匹配就返回true，否则false
     me.preventDefaultException = function(el, exceptions) {
         for (var i in exceptions) {
@@ -241,7 +241,7 @@ var utils = (function() {
         circular: {
             style: 'cubic-bezier(0.1, 0.57, 0.1, 1)', // Not properly "circular" but this looks better, it should be (0.075, 0.82, 0.165, 1)
             fn: function(k) {
-                return Math.sqrt(1 - --k * k);
+                return Math.sqrt(1 - (--k) * k);
             }
         },
         back: {
